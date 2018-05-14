@@ -1,0 +1,146 @@
+@import "../../styles/weui.wxss";
+page {
+  background-color: white;
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+}
+.page-body{
+  padding-top: 30rpx;
+}
+.page-section{
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+.page-section_center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-section:last-child{
+  margin-bottom: 0;
+}
+.page-section-gap{
+  box-sizing: border-box;
+  padding: 0 30rpx;
+}
+/*保证grid的形状不会拉伸*/
+.page-section-spacing{
+  box-sizing: border-box;
+  padding: 60rpx 20rpx 0 20rpx;
+}
+.page-section-title{
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+.page-section-gap .page-section-title{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.demo-text-1{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #1AAD19;
+  color: #FFFFFF;
+  font-size: 36rpx;
+}
+.demo-text-1:before{
+  content: 'A';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.demo-text-2{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #2782D7;
+  color: #FFFFFF;
+  font-size: 36rpx;
+}
+.demo-text-2:before{
+  content: 'B';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.demo-text-3{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #F1F1F1;
+  color: #353535;
+  font-size: 36rpx;
+}
+.demo-text-3:before{
+  content: 'C';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button{
+  margin-bottom: 30rpx;
+}
+button:last-child{
+  margin-bottom: 0;
+}
+.page-section-title{
+  padding: 0;
+}
+.swiper-item{
+  display: block;
+  height: 10%;
+}
+.page-section-title{
+  margin-top: 60rpx;
+  position: relative;
+}
+.info{
+  position: absolute;
+  right: 0;
+  color: #353535;
+  font-size: 30rpx;
+}
+.page-foot{
+  margin-top: 50rpx;
+}
+/*重写.weui-grids去掉边框*/
+.weui-grids{
+  border: none;
+}
+/*重写weui-grid保证其大小*/
+.weui-grid{
+  background-color:#F5FFFA;
+  margin-left:3%;  
+  margin-top: 10%;
+  width: 45%;
+  height: 305rpx;
+  border: 2px #FFD700 dashed; 
+  border-radius: 10%;
+}
+/*重写weui-grid__icon保证图片大小*/
+.weui-grid__icon{
+  padding-top: 30rpx;
+  height: 150rpx;
+  width: 150rpx;
+}
+/*重写weui-grid__label保证字体合适*/
+.weui-grid__label{
+  font-family: 'DroidSans120331efaa1cd96';
+  margin-top:20rpx;
+  font-size:40rpx;
+  letter-spacing:10rpx;
+}
+/*重写swiper保证首页占满屏幕*/
+swiper{
+  height: 900rpx;
+}
