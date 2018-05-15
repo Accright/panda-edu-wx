@@ -119,13 +119,14 @@ button:last-child{
 }
 /*重写weui-grid保证其大小*/
 .weui-grid{
-  background-color:#F5FFFA; 
+  background-color:white; 
   margin-left:4%;  
-  margin-top: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   width: 45%;
   height: 350rpx;
   /* border: none; */
-  /* border: 2px #AEEEEE dashed;  */
+  border: 2px #AEEEEE dashed;  
   border-radius: 10%; 
 }
 /*重写weui-grid__icon保证图片大小*/
@@ -136,8 +137,6 @@ button:last-child{
 }
 /*重写weui-grid__label保证字体合适*/
 .weui-grid__label{
-  /* background-color: red;
-  border-top: 2rpx #999999 solid ; */
   font-family: 'DroidSans1206742e501cd96';
   margin-top:20rpx;
   font-size:40rpx;
@@ -148,4 +147,12 @@ button:last-child{
 /*重写swiper保证首页占满屏幕*/
 swiper{
   height: 900rpx;
+}
+/*重写weui-grid_active实现点击放大效果*/
+.weui-grid_active{
+  transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -webkit-transform:scale(1.2);
+  -o-transform:scale(1.2);
+  -moz-transform:scale(1.2);
 }
