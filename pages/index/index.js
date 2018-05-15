@@ -3,17 +3,17 @@
 const app = getApp()
 //定义 首页 tab1
 var tab1 = [
-  { "name": "字母认知", "ico": "alphabet.png", "url": "../sendSms/sendSms", "color":"#77B3D4" },
-  { "name": "数字认知", "ico": "numbers.png", "url": "../picasa/picasa", "color":"#FF7256" },
-  { "name": "动物认知", "ico": "logo.png", "url": "../sendSms/sendSms" , "color": "#8AC064"  },
-  { "name": "水果认知", "ico": "fruit.png", "url": "../getOpenId/getOpenId","color": "#A8F0C7" }
+  { "name": "字母认知", "ico": "alphabet.png", "url": "../details/details?type=letters", "color":"#77B3D4" },
+  { "name": "数字认知", "ico": "numbers.png", "url": "../details/details?type=numbers", "color":"#FF7256" },
+  { "name": "动物认知", "ico": "logo.png", "url": "../details/details?type=logo" , "color": "#8AC064"  },
+  { "name": "水果认知", "ico": "fruit.png", "url": "../details/details?type=fruit","color": "#A8F0C7" }
 ];
 //定义 首页 tab2
 var tab2 = [
-  { "name": "车辆认知", "ico": "cars.png", "url": "../sendSms/sendSms", "color": "#32BEA6" },
-  { "name": "关系认知", "ico": "people.png", "url": "../picasa/picasa", "color": "#FFC0CB" },
-  { "name": "颜色认知", "ico": "colors.png", "url": "../sendSms/sendSms", "color": "#E0E0D1" },
-  { "name": "乐器认知", "ico": "instrument.png", "url": "../getOpenId/getOpenId", "color": "#F9A72F" }
+  { "name": "车辆认知", "ico": "cars.png", "url": "../details/details?type=cars", "color": "#32BEA6" },
+  { "name": "人物认知", "ico": "people.png", "url": "../details/details?type=people", "color": "#FFC0CB" },
+  { "name": "颜色认知", "ico": "colors.png", "url": "../details/details?type=colors", "color": "#E0E0D1" },
+  { "name": "乐器认知", "ico": "instrument.png", "url": "../details/details?type=instrument", "color": "#F9A72F" }
 ];
 Page({
   data: {

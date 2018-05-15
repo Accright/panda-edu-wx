@@ -1,3 +1,4 @@
+/* pages/detais/details.wxss */
 @import "../../styles/weui.wxss";
 page {
   background-color: white;
@@ -132,27 +133,70 @@ button:last-child{
 /*重写weui-grid__icon保证图片大小*/
 .weui-grid__icon{
   padding-top: 20rpx;
-  height: 200rpx;
-  width: 200rpx;
+  height: 400rpx;
+  width: 400rpx;
 }
 /*重写weui-grid__label保证字体合适*/
 .weui-grid__label{
   font-family: 'DroidSans1208f8bb811cd96';
-  margin-top:20rpx;
-  font-size:40rpx;
-  letter-spacing:10rpx;
+  margin-top:30rpx;
+  font-size:150rpx;
   color: #FFD700;
   font-weight: bold;
 }
 /*重写swiper保证首页占满屏幕*/
 swiper{
-  height: 900rpx;
+  height: 1000rpx;
 }
 /*重写weui-grid_active实现点击放大效果*/
 .weui-grid_active{
-  transform:scale(1.2);
-  -ms-transform:scale(1.2);
-  -webkit-transform:scale(1.2);
-  -o-transform:scale(1.2);
-  -moz-transform:scale(1.2);
+  transform:scale(1.1);
+  -ms-transform:scale(1.1);
+  -webkit-transform:scale(1.1);
+  -o-transform:scale(1.1);
+  -moz-transform:scale(1.1);
+}
+/*详情圆形展示*/
+.weui-article__p {
+  margin: 0;
+  background-color: #AEEEEE;
+  width: 550rpx;
+  height: 550rpx;
+  border-radius: 50%;
+}
+/*自定义一个椭圆*/
+.ellipse-v{
+  margin-top: 30rpx;
+  height: 35rpx;
+  width: 190rpx;
+  border-radius: 50%;
+  background: #A1A1A1;
+}
+/*重写weui-article__section内容居中*/
+.weui-article__section{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+/*保证内容居中*/
+.weui-article {
+  padding: 0;
+}
+/*外侧圆环边框*/
+.border-cicle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600rpx;
+  height: 600rpx;
+  border: 3rpx #AEEEEE dashed;
+  border-radius: 50%;
+}
+/*重写wxParse-p是内容居中*/
+.wxParse-p{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

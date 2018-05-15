@@ -3,7 +3,7 @@
   <view class="page-body">
     <view class="page-section page-section-spacing swiper">
       <swiper bindchange='changeTab'
-        indicator-dots="true">
+        indicator-dots="{{true}}">
         <!--tab 1-->
         <swiper-item>
           <view class="weui-grids">
