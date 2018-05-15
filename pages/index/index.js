@@ -3,17 +3,17 @@
 const app = getApp()
 //定义 首页 tab1
 var tab1 = [
-  { "name": "字母认知", "ico": "alphabet.png", "url": "../sendSms/sendSms","color":"red" },
-  { "name": "数字认知", "ico": "numbers.png", "url": "../picasa/picasa" },
-  { "name": "动物认知", "ico": "animals.png", "url": "../sendSms/sendSms", "click": "autuLogin", "color": "red"  },
-  { "name": "水果认知", "ico": "fruit.png", "url": "../getOpenId/getOpenId" }
+  { "name": "字母认知", "ico": "alphabet.png", "url": "../sendSms/sendSms", "color":"#FFF68F" },
+  { "name": "数字认知", "ico": "numbers.png", "url": "../picasa/picasa", "color":"#EED2EE" },
+  { "name": "动物认知", "ico": "logo.png", "url": "../sendSms/sendSms", "click": "autuLogin", "color": "#E0FFFF"  },
+  { "name": "水果认知", "ico": "fruit.png", "url": "../getOpenId/getOpenId","color": "#FFD700" }
 ];
 //定义 首页 tab2
 var tab2 = [
-  { "name": "车辆认知", "ico": "cars.png", "url": "../sendSms/sendSms" },
-  { "name": "关系认知", "ico": "people.png", "url": "../picasa/picasa" },
-  { "name": "颜色认知", "ico": "color.png", "url": "../sendSms/sendSms", "click": "autuLogin" },
-  { "name": "乐器认知", "ico": "Instrument.png", "url": "../getOpenId/getOpenId" }
+  { "name": "车辆认知", "ico": "cars.png", "url": "../sendSms/sendSms", "color": "#FFD700" },
+  { "name": "关系认知", "ico": "people.png", "url": "../picasa/picasa", "color": "#FFD700" },
+  { "name": "颜色认知", "ico": "colors.png", "url": "../sendSms/sendSms", "click": "autuLogin", "color": "#FFD700" },
+  { "name": "乐器认知", "ico": "instrument.png", "url": "../getOpenId/getOpenId", "color": "#FFD700" }
 ];
 Page({
   data: {
