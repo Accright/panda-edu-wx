@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="music-list-container">
+    <view class="big-photo-list">
+        <navigator class="big-photo-item" wx:for="{{storyList}}" wx:key="{{objectId}}" url='teller/teller?objectId={{item.objectId}}'>         
+            <image class="photo" src="{{item.imgUrl}}"></image>           
+            <text class="music-name">{{item.title}}</text>
+            <text class="music-author">适合{{item.match}}个月宝宝</text>
+        </navigator>      
+    </view>
+  </view>
+</view>

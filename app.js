@@ -9,7 +9,18 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    //才用新方式登录
+    //版本兼容
+    // if (!wx.canIUse('getUserInfo')){
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '微信版本过低，请更新微信!',
+    //     success: function(res){
+
+    //     }
+    //   });
+    //   return false;
+    // }
+    //采用新方式登录
     Bmob.User.auth().then(res => {
       let current = Bmob.User.current();
       console.log(current);

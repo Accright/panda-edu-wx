@@ -18,11 +18,17 @@ Page({
    */
   onLoad: function (options) {
     that = this;//全局变量赋值
+    //加载框
+    wx.showLoading({
+      title: '资料加载中',
+    })
     var query = Bmob.Query("knowledge_point_cols");
     query.order("order");
     query.equalTo("type", "==", options.type);//设置type为传递的值
     query.find().then(res => {
       console.log(res);
+      //取消loading
+      wx.hideLoading();
       that.setData({
         dataList:res
       });
@@ -86,17 +92,31 @@ Page({
   
   },
   playVoice: function(event){
-    const innerAudioContext = wx.createInnerAudioContext();
-    innerAudioContext.autoplay = true;
-    console.log(event.currentTarget.dataset.voiceEn);
-    innerAudioContext.src = event.currentTarget.dataset.voiceEn;
-    innerAudioContext.play();
-    innerAudioContext.onError((res) => {
-      wx.showToast({
-        title: "播放错误"+res.errCode+"\n"+res.errMsg,
-        icon: 'none',
-        duration: 2000
+    //版本兼容处理
+    if (wx.canIUse("createAudioContext")){
+      const innerAudioContext = wx.createInnerAudioContext();
+      innerAudioContext.autoplay = true;
+      console.log(event.currentTarget.dataset.voiceEn);
+      innerAudioContext.src = event.currentTarget.dataset.voiceEn;
+      innerAudioContext.play();
+      innerAudioContext.onError((res) => {
+        wx.showToast({
+          title: "播放错误" + res.errCode + "\n" + res.errMsg,
+          icon: 'none',
+          duration: 2000
+        });
       });
-    });
+    }else{
+      wx.playVoice({
+        filePath: event.currentTarget.dataset.voiceEn,
+        fail: function(res){
+          wx.showToast({
+            title: "播放错误" + res.errCode + "\n" + res.errMsg,
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      })
+    }
   }
 })

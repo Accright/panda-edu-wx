@@ -8,7 +8,9 @@
     "pages/register/register",
     "pages/feedback/feedback",
     "pages/experience/experience",
-    "pages/paint/paint"
+    "pages/paint/paint",
+    "pages/story/story",
+    "pages/story/teller/teller"
   ],
   "window": {
     "backgroundTextStyle": "light",

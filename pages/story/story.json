@@ -1,0 +1,5 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "故事列表",
+  "onReachBottomDistance": 20
+}

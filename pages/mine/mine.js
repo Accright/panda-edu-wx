@@ -33,11 +33,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
     that = this;
     var now = util.getNowTime(new Date());//
     var next = util.getNextTime(new Date());// 
     //判断用户是否注册 --根据是否有userName进行判断
-    if (currentUser && currentUser.isLock){
+    if (currentUser && currentUser.isLock) {
       let userInfo = {};
       userInfo.avatarUrl = currentUser.userPic;
       userInfo.nickName = currentUser.nickName;
@@ -48,13 +55,13 @@ Page({
       });
       //查询用户是否签到
       var query = Bmob.Query('sign_logs');
-      query.equalTo("userid","==",currentUser.objectId);
+      query.equalTo("userid", "==", currentUser.objectId);
       query.equalTo("createdAt", ">", now);
       query.equalTo("createdAt", "<", next);
       query.find().then(res => {
         //console.log(res);
         //如果长度大于0 说明签到了
-        if(res.length > 0){
+        if (res.length > 0) {
           that.setData({
             signedTime: res[0].createdAt,
             signed: true
@@ -86,10 +93,10 @@ Page({
           duration: 2000
         });
       });
-    } else if (currentUser == null){
+    } else if (currentUser == null) {
       //如果用户为空 重新登录
       Bmob.User.auth().then(res => {
-        console.log("重新登录成功",res);
+        console.log("重新登录成功", res);
       });
     }
     //获取育儿经
@@ -113,13 +120,6 @@ Page({
         duration: 2000
       });
     });
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
   },
 
   /**
@@ -201,7 +201,8 @@ Page({
     query.save().then(res => {
       console.log(res);
       that.setData({
-        signed: true
+        signed: true,
+        signedTime: res.createdAt
       });
     }).catch(err => {
       common.showModal('签到出错', err);
