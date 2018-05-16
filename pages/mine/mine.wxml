@@ -27,7 +27,6 @@
                 <view class="demo__icon zan-badge">
                   <text wx:if="{{!hasUserInfo}}">解锁更多功能</text>
                   <text wx:else>签到</text>
-                  <view class="zan-badge__count" wx:if="{{noticeCount>0}}">{{noticeCount}}</view>
                 </view>
               </view>
               <view class="item-wrapper">
@@ -35,15 +34,15 @@
                 <view class='unlock_v' wx:if="{{!hasUserInfo}}">
                   <view class='unlock-btn-cicle'>
                     <button class='circle-btn' type='primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 解锁</button>
-                    <text class='singed-text'>解锁更多功能，让宝宝赢在起跑线</text>
                   </view>
+                  <text class='singed-text'>点击按钮解锁更多功能，让宝宝赢在起跑线</text>
                 </view>
                 <!--未签到-->
                 <view class='unlock_v' wx:elif="{{!signed}}">
                   <view class='unlock-btn-cicle'>
                     <button class='circle-btn-sign' type='default' bindtap='signUp'> 签到</button>
                   </view>
-                  <text class='singed-text'>每日签到，让宝宝每日变得更好</text>
+                  <text class='singed-text'>点击按钮每日签到，让宝宝每日变得更好</text>
                 </view>
                 <!--已签到-->
                 <view class='unlock_v' wx:else>

@@ -15,15 +15,21 @@ var tab1 = [
 //定义 首页 tab2
 var tab2 = [
   { "name": "认识车辆", "ico": "cars.png", "url": "../details/details?type=cars", "color": "#32BEA6" },
-  { "name": "认识任务", "ico": "people.png", "url": "../details/details?type=people", "color": "#FFC0CB" },
+  { "name": "认识人物", "ico": "people.png", "url": "../details/details?type=people", "color": "#FFC0CB" },
   { "name": "认识颜色", "ico": "colors.png", "url": "../details/details?type=colors", "color": "#E0E0D1" },
   { "name": "认识乐器", "ico": "instrument.png", "url": "../details/details?type=instrument", "color": "#F9A72F" }
+];
+//定义 首页 tab3
+var tab3 = [
+  { "name": "听故事", "ico": "storybook.png", "url": "../details/details?type=story", "color": "#F06060" },
+  { "name": "学画画", "ico": "paint.png", "url": "../paint/paint", "color": "#FFFF5A" }
 ];
 Page({
   data: {
     background: ['1', '2'],
     tab1: tab1,
     tab2: tab2,
+    tab3: tab3,
     userInfo: {},
     isLock:false
   },
