@@ -9,11 +9,12 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     //才用新方式登录
     Bmob.User.auth().then(res => {
-      console.log(res)
-      console.log('一键登陆成功');
+      let current = Bmob.User.current();
+      console.log(current);
+      //console.log(res)
+      //console.log('一键登陆成功');
     }).catch(err => {
       console.log(err)
     });

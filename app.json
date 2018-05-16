@@ -2,7 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/details/details"
+    "pages/details/details",
+    "pages/mine/mine",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/feedback/feedback",
+    "pages/experience/experience"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,7 +28,7 @@
         "text": "常用接口"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/mine/mine",
         "iconPath": "images/logo.png",
         "selectedIconPath": "images/logo.png",
         "text": "日记管理"

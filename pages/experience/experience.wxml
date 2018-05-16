@@ -1,0 +1,16 @@
+<!--pages/index/detail/index.wxml-->
+<view class="page">
+    <view class="weui-article">
+        <view class="weui-article__h1"> {{rows.title}}</view>
+        <view class="weui-article__section">  
+            <view class="weui-article__section">
+                <view class="weui-article__p">
+
+                    <import src="../../utils/wxParse/wxParse.wxml"/>
+  <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+                </view>
+                  <view class="weui-article__h3">创建时间：{{rows.createdAt}} </view>
+            </view>
+        </view>
+    </view>
+</view>

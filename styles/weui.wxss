@@ -63,7 +63,7 @@ icon {
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
 }
 .weui-cell:before {
   content: " ";

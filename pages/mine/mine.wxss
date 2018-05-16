@@ -1,0 +1,248 @@
+@import "../../styles/weui.wxss";
+
+/*详情*/
+.i-header{
+   height: 300rpx;
+   background-color: white;   
+   text-align: center;
+}
+/*用户信息居中*/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.usermotto {
+  margin-top: 200px;
+}
+.navigator-hover button {
+  background-color: #dedede;
+}
+
+.other-navigator-hover button {
+  background-color: #dedede;
+}
+
+.g-bda-userinfo-30 {
+  width: 50%;
+  padding-top: 50rpx;
+  display: flex;
+  flex-direction: column ;
+  align-items: center;
+}
+.g-bda-userinfo-70 {
+  width: 50%;
+  padding-top: 50rpx;
+  display: flex;
+  flex-direction: column ;
+  align-items: flex-start;
+  justify-content: center;
+}
+/*用户头像*/
+.userinfo-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 20rpx;
+  margin-bottom: 2rpx;
+  border-radius: 50%;
+  border: 6rpx solid #AEEEEE;
+}
+/*用户昵称*/
+.userinfo-nickname{
+  color: #aaa;
+}
+/*重写为flex布局*/
+.g-bda{
+  display: flex;
+}
+/*展示姓名*/
+.userinfo-name{
+  color: #5F9EA0;
+  font-weight: bold; 
+}
+/*展示签到天数*/
+.userinfo-sign{
+  font-size: small;
+}
+.subtitle {
+  padding: 20rpx 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+  border-top: 20rpx solid #f4f4f4;
+}
+
+.subtitle image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 30rpx;
+  flex-shrink: 0;
+}
+
+.subtitle text {
+  font-size: 30rpx;
+  color: #666;
+}
+/**/
+.item-wrapper{
+    width: 100%; 
+    overflow: hidden;
+    border-top: 1px solid #f4f4f4;
+}
+.imgitem {
+  display: flex;
+  justify-content: center;
+  margin-top: 73rpx;
+  
+}
+.txtitem {
+  display: flex;
+  justify-content: center;
+  margin-top: 29rpx;
+  margin-bottom: 29rpx;
+}
+/*解锁和签到区域*/
+.unlock_v{
+  padding-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/*圆形按钮外边框*/
+.unlock-btn-cicle{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  border: 20rpx solid #EAEAEA;
+}
+/*圆形按钮*/
+.circle-btn{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  background-color: #AEEEEE;
+  line-height: 130rpx;
+}
+/*修改默认button的颜色*/
+button[type="primary"]{
+  background-color: #ff8247;
+}
+/*修改button点击后的颜色*/
+.button-hover{
+  background-color: #FF7256!important;
+}
+/*圆形按钮-签到*/
+.circle-btn-sign{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  background-color: #5fceca!important;
+  line-height: 130rpx;
+}
+/*签到成功图标*/
+.weui-icon_msg {
+    font-size: 130rpx!important;
+}
+.weui-icon-success {
+    color: #09BB07;
+}
+[class^="weui-icon-"], [class*=" weui-icon-"] {
+    display: inline-block;
+    vertical-align: middle;
+    font: normal normal normal 14px/1 "weui";
+    /* font-size: inherit; */
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+[class^="weui-icon_"]:before, [class*=" weui-icon_"]:before {
+    margin: 0;
+}
+.weui-icon-success:before {
+    content: "\EA06";
+}
+[class^="weui-icon-"]:before, [class*=" weui-icon-"]:before {
+    display: inline-block;
+}
+/*签到成功图标*/
+.signed-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*singed-text 签到成功文字*/
+.singed-text{
+  margin-top: 20rpx;
+  font-size: small;
+}
+/*文字前小图标*/
+.img-icon{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 5px;
+}
+/*重写该样式保证关于的padding*/
+.weui-cell_access{
+  padding: 20rpx 40rpx;
+  border: none;
+}
+/*图文列表界面*/
+.weui-media-box {
+  padding:0 0 0 0;
+  padding-left:40rpx;
+  padding-bottom: 20rpx;
+  position: relative;
+}
+.weui-panel__hd {
+  color: #999999;
+  font-size: 13px;
+  position: relative;
+}
+.weui-panel__hd:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: none;
+  color: #E5E5E5;
+}
+.weui-media-box_appmsg .weui-media-box__hd {
+    margin-right: 20rpx;
+    width: 100rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+}
+.weui-media-box_appmsg .weui-media-box__bd {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.weui-cells{
+  position: relative;
+  margin-top: 0;
+  background-color: #FFFFFF;
+  line-height: 2;
+  font-size: 17px;
+}
+.padding-none{
+  padding-left: 0rpx;
+}
+/*去掉最底的border*/
+.weui-cells:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: none;
+  color: #D9D9D9;
+}

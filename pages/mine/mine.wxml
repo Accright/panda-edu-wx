@@ -1,0 +1,116 @@
+<view class="page">
+    <view class="page__hd i-header">
+        <view class="g-bd">
+            <view></view>
+            <view class="g-bda">
+                <view bindtap="" class="g-bda-userinfo-30">
+                    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+                </view>
+                <view bindtap="" class="g-bda-userinfo-70" wx:if="{{!hasUserInfo}}">
+                  <text class='userinfo-name'>尚未解锁</text>
+                  <text class='userinfo-sign'>请点击下方的按钮解锁</text>
+                </view>
+                <view bindtap="" class="g-bda-userinfo-70" wx:else>
+                  <text class='userinfo-name'>{{userInfo.nickName}}</text>
+                  <text class='userinfo-sign'>已签到{{signdays}}天</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+    <view class="page__bd">
+        <view class="weui-panel">
+            <!--解锁和签到的区域 -->
+            <view>
+              <view class='subtitle'>
+                <image src="../../images/unlock.png" mode="aspectFit" />
+                <view class="demo__icon zan-badge">
+                  <text wx:if="{{!hasUserInfo}}">解锁更多功能</text>
+                  <text wx:else>签到</text>
+                  <view class="zan-badge__count" wx:if="{{noticeCount>0}}">{{noticeCount}}</view>
+                </view>
+              </view>
+              <view class="item-wrapper">
+                <!--未解锁-->
+                <view class='unlock_v' wx:if="{{!hasUserInfo}}">
+                  <view class='unlock-btn-cicle'>
+                    <button class='circle-btn' type='primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 解锁</button>
+                    <text class='singed-text'>解锁更多功能，让宝宝赢在起跑线</text>
+                  </view>
+                </view>
+                <!--未签到-->
+                <view class='unlock_v' wx:elif="{{!signed}}">
+                  <view class='unlock-btn-cicle'>
+                    <button class='circle-btn-sign' type='default' bindtap='signUp'> 签到</button>
+                  </view>
+                  <text class='singed-text'>每日签到，让宝宝每日变得更好</text>
+                </view>
+                <!--已签到-->
+                <view class='unlock_v' wx:else>
+                  <view class='unlock-btn-cicle signed-icon'>
+                    <i class="weui-icon-success weui-icon_msg"></i>
+                  </view>
+                  <text class='singed-text'>今日签到时间：{{signedTime}}</text>
+                </view>
+              </view>
+            </view>
+            <!--育儿经-->
+            <view>
+              <view class='subtitle'>
+                <image src="../../images/experience.png" mode="aspectFit" />
+                <view class="demo__icon zan-badge">
+                  <text>育儿经</text>
+                </view>
+              </view>
+              <view class="weui-panel__bd">
+                <view class="weui-panel weui-panel_access"  wx:if="{{todayExp.title}}">
+                  <view class='weui-panel__hd'>
+                    今日成长推荐——{{today}}
+                  </view>
+                  <view class='weui-panel__bd'> 
+                    <navigator class='weui-media-box weui-media-box_appmsg' url='../experience/experience?expid={{todayExp.objectId}}'>
+                      <view class='weui-media-box__hd'>
+                        <image class='weui-media-box__thumb' src="{{todayExp.imgUrl}}" mode="aspectFit" />
+                      </view>
+                      <view class='weui-media-box__bd'>
+                        <view class='weui-media-box__title'>{{todayExp.title}}</view>
+                        <view class='weui-media-box__desc'>{{todayExp.desc}}</view>
+                      </view>
+                    </navigator>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!--其他-->
+            <view>
+              <view class='subtitle'>
+                <image src="../../images/about.png" mode="aspectFit" />
+                <view class="demo__icon zan-badge">
+                  <text>其他</text>
+                </view>
+              </view>
+              <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_small-appmsg padding-none">
+                  <view class='weui-cells'> 
+                    <navigator class='weui-cell weui-cell_access' url='../feedback/feedback'>
+                      <view class='weui-cell__bd weui-cell_primary'>
+                        <text>使用指南</text>
+                      </view>
+                    </navigator>
+                    <navigator class='weui-cell weui-cell_access' url='../feedback/feedback'>
+                      <view class='weui-cell__bd weui-cell_primary'>
+                        <text>反馈意见</text>
+                      </view>
+                    </navigator>
+                    <navigator class='weui-cell weui-cell_access' url=''>
+                      <view class='weui-cell__bd weui-cell_primary'>
+                        <text>关于竹熊早教小程序</text>
+                      </view>
+                    </navigator>
+                  </view>
+                </view>
+              </view>
+            </view>
+        </view>
+    </view>
+</view>

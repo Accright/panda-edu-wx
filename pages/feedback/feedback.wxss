@@ -1,0 +1,68 @@
+@import "../../styles/weui.wxss";
+.g-bda-userinfo {
+  padding-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 20rpx;
+  margin-bottom: 2rpx;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.userinfo-nickname{
+  color: #fff;
+}
+/*修改默认button的颜色*/
+button[type="primary"]{
+  background-color: #5fceca;
+}
+/*修改button点击后的颜色*/
+.button-hover{
+  background-color: #5fceca!important;
+}
+.subtitle {
+  padding: 20rpx 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+  border-top: 20rpx solid #f4f4f4;
+}
+
+.subtitle image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 30rpx;
+  flex-shrink: 0;
+}
+
+.subtitle text {
+  font-size: 30rpx;
+  color: #666;
+}
+/**/
+.item-wrapper{
+    width: 100%; 
+    overflow: hidden;
+    border-top: 1px solid #f4f4f4;
+}
+.imgitem {
+  display: flex;
+  justify-content: center;
+  margin-top: 73rpx;
+  
+}
+.txtitem {
+  display: flex;
+  justify-content: center;
+  margin-top: 29rpx;
+  margin-bottom: 29rpx;
+}
