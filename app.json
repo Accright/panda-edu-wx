@@ -21,20 +21,20 @@
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#AEEEEE",
+    "selectedColor": "#5F9EA0",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/logo.png",
-        "selectedIconPath": "images/logo.png",
+        "iconPath": "images/index-unclick.png",
+        "selectedIconPath": "images/index-click-2.png",
         "text": "学习认知"
       },
       {
         "pagePath": "pages/mine/mine",
-        "iconPath": "images/logo.png",
-        "selectedIconPath": "images/logo.png",
+        "iconPath": "images/mine-unclick.png",
+        "selectedIconPath": "images/mine-click-2.png",
         "text": "个人中心"
       }
     ]

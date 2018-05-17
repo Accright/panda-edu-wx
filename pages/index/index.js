@@ -9,20 +9,20 @@ var user;
 var tab1 = [
   { "name": "认识字母", "ico": "alphabet.png", "url": "../details/details?type=letters", "color":"#77B3D4" },
   { "name": "认识数字", "ico": "numbers.png", "url": "../details/details?type=numbers", "color":"#FF7256" },
-  { "name": "认识动物", "ico": "logo.png", "url": "../details/details?type=logo" , "color": "#8AC064"  },
-  { "name": "认识水果", "ico": "fruit.png", "url": "../details/details?type=fruit","color": "#A8F0C7" }
+  { "name": "认识动物", "ico": "logo.png", "url": "../details/details?type=logo", "color": "#8AC064" },
+  { "name": "听故事", "ico": "storybook.png", "url": "../story/story", "color": "#F06060" }
 ];
 //定义 首页 tab2
 var tab2 = [
-  { "name": "认识车辆", "ico": "cars.png", "url": "../details/details?type=cars", "color": "#32BEA6" },
+  { "name": "认识水果", "ico": "fruit.png", "url": "../details/details?type=fruit", "color": "#A8F0C7" },
   { "name": "认识人物", "ico": "people.png", "url": "../details/details?type=people", "color": "#FFC0CB" },
   { "name": "认识颜色", "ico": "colors.png", "url": "../details/details?type=colors", "color": "#E0E0D1" },
-  { "name": "认识乐器", "ico": "instrument.png", "url": "../details/details?type=instrument", "color": "#F9A72F" }
+  { "name": "学画画", "ico": "paint.png", "url": "../paint/paint", "color": "#76C2AF" }
 ];
 //定义 首页 tab3
 var tab3 = [
-  { "name": "听故事", "ico": "storybook.png", "url": "../story/story", "color": "#F06060" },
-  { "name": "学画画", "ico": "paint.png", "url": "../paint/paint", "color": "#76C2AF" }
+  { "name": "认识车辆", "ico": "cars.png", "url": "../details/details?type=cars", "color": "#32BEA6" },
+  { "name": "认识乐器", "ico": "instrument.png", "url": "../details/details?type=instrument", "color": "#F9A72F" }
 ];
 Page({
   data: {

@@ -24,11 +24,13 @@ Page({
   onLoad: function (options) {
     //远程加载数据
     that = this;
-    //版本兼容
-
+    wx.showLoading({
+      title: '正在加载',
+    })
     var objectId = options.objectId;
     var query = Bmob.Query('story');
     query.get(objectId).then(res => {
+      wx.hideLoading();
       console.log(res);
       //设置标题
       wx.setNavigationBarTitle({
@@ -54,6 +56,7 @@ Page({
         item: res
       });
     }).catch(err => {
+      wx.hideLoading();
       console.log(err);
       //加载数据出错 提示
       wx.showToast({
@@ -87,7 +90,17 @@ Page({
           title: '加载中',
           mask: true
         })
-      })
+      });
+      innerAudioContext.onCanplay(() =>{
+        console.log('继续播放')
+        wx.hideLoading();
+      });
+      innerAudioContext.onEnded(() =>{
+        console.log('已结束');
+        that.setData({
+          isPlaying: false
+        });
+      });
     }
   },
 

@@ -6,7 +6,7 @@ const app = getApp();
 //定义当前缓存的对象
 let currentUser = Bmob.User.current();
 var that;
-var skip = 10;//定义全局变量作为分页
+var skip = 0;//定义全局变量作为分页
 Page({
   /**
    * 页面的初始数据
@@ -29,6 +29,7 @@ Page({
     that = this;
     //获取故事列表
     var query = Bmob.Query('story');
+    query.order("order");
     query.limit(10);
     query.find().then(res => {
       //console.log(res);
@@ -78,6 +79,7 @@ Page({
     //下拉刷新 刷新数据
     var query = Bmob.Query('story');
     query.limit(10);
+    query.order("order");
     query.find().then(res => {
       wx.stopPullDownRefresh();
       //console.log(res);
@@ -105,14 +107,27 @@ Page({
    */
   onReachBottom: function () {
     //上拉加载数据
+    //console.log(skip);
     var query = Bmob.Query('story');
     query.skip(skip);
+    query.order("order");
     query.find().then(res => {
       //console.log(res);
       //如果长度大于0 说明获取成功
       if (res.length > 0) {
         skip += 10;
-        res = res.contact(that.data.storyList);
+        res = res.concat(that.data.storyList);
+        //console.log(res);
+        //需要对数组根据order进行排序 
+        res.sort(function (x, y) {
+          if (x.order < y.order) {
+            return -1;
+          }
+          if (x.order > y.order) {
+            return 1;
+          }
+          return 0;
+        });
         that.setData({
           storyList: res
         });
