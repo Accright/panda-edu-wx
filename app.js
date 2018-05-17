@@ -27,7 +27,10 @@ App({
       //console.log(res)
       //console.log('一键登陆成功');
     }).catch(err => {
-      console.log(err)
+      console.log(err);
+      wx.showToast({
+        title: '登录失败，请点击个人中心重新登录',
+      })
     });
   },
   globalData: {

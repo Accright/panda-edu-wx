@@ -3,10 +3,10 @@ var Bmob = require('../../utils/Bmob-1.3.1.min.js');
 var app = getApp();
 var common = require('../../utils/common.js');//定义公共处理函数
 var util = require('../../utils/util.js');//定义公共处理函数
-//定义当前缓存的对象
-let currentUser = Bmob.User.current();
 //全局变量
 var that;
+//定义当前用户
+var currentUser;
 Page({
 
   /**
@@ -33,72 +33,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    that = this;//全局this赋值
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    that = this;
-    var now = util.getNowTime(new Date());//
-    var next = util.getNextTime(new Date());// 
-    //判断用户是否注册 --根据是否有userName进行判断
-    if (currentUser && currentUser.isLock) {
-      let userInfo = {};
-      userInfo.avatarUrl = currentUser.userPic;
-      userInfo.nickName = currentUser.nickName;
-      //更新全局变量
-      this.setData({
-        userInfo: userInfo,
-        hasUserInfo: true
-      });
-      //查询用户是否签到
-      var query = Bmob.Query('sign_logs');
-      query.equalTo("userid", "==", currentUser.objectId);
-      query.equalTo("createdAt", ">", now);
-      query.equalTo("createdAt", "<", next);
-      query.find().then(res => {
-        //console.log(res);
-        //如果长度大于0 说明签到了
-        if (res.length > 0) {
-          that.setData({
-            signedTime: res[0].createdAt,
-            signed: true
-          });
-        }
-      }).catch(err => {
-        console.log(err);
-        //加载数据出错 提示
-        wx.showToast({
-          title: err,
-          icon: 'none',
-          duration: 2000
-        });
-      });
-      //获取签到记录数
-      var signDaysQuery = Bmob.Query('sign_logs');
-      query.equalTo("userid", "==", currentUser.objectId);
-      query.count().then(res => {
-        //更新签到天数
-        that.setData({
-          signdays: res
-        });
-      }).catch(err => {
-        console.log(err);
-        //加载数据出错 提示
-        wx.showToast({
-          title: err,
-          icon: 'none',
-          duration: 2000
-        });
-      });
-    } else if (currentUser == null) {
-      //如果用户为空 重新登录
-      Bmob.User.auth().then(res => {
-        console.log("重新登录成功", res);
-      });
-    }
+    //var now = util.getNowTime(new Date());//
+    //var next = util.getNextTime(new Date());// 
     //获取育儿经
     var expQuery = Bmob.Query('experience');
     //获取当天的育儿经 --改为获取所有并以创建时间降序排列 取第一条
@@ -129,7 +72,88 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    //定义当前缓存的对象
+    currentUser = Bmob.User.current();
+    console.log("curruser", currentUser);
+    var now = util.getNowTime(new Date());//
+    var next = util.getNextTime(new Date());// 
+    //判断用户是否注册 --根据是否有isLock进行判断
+    if (currentUser && currentUser.isLock) {
+      var userInfo = {};
+      userInfo.avatarUrl = currentUser.userPic;
+      userInfo.nickName = currentUser.nickName;
+      //更新全局变量
+      this.setData({
+        userInfo: userInfo,
+        hasUserInfo: true
+      });
+      wx.showLoading({
+        title: '拉取用户信息'
+      })
+      //查询用户是否签到
+      var query = Bmob.Query('sign_logs');
+      query.equalTo("userid", "==", currentUser.objectId);
+      query.equalTo("createdAt", ">", now);
+      query.equalTo("createdAt", "<", next);
+      query.find().then(res => {
+        //console.log(res);
+        //如果长度大于0 说明签到了
+        if (res.length > 0) {
+          that.setData({
+            signedTime: res[0].createdAt,
+            signed: true
+          });
+          //获取签到记录数
+          var signDaysQuery = Bmob.Query('sign_logs');
+          signDaysQuery.equalTo("userid", "==", currentUser.objectId);
+          signDaysQuery.count().then(res => {
+            wx.hideLoading();//取消加载框
+            //更新签到天数
+            that.setData({
+              signdays: res
+            });
+          }).catch(err => {
+            wx.hideLoading();//取消加载框
+            console.log(err);
+            //加载数据出错 提示
+            wx.showToast({
+              title: err,
+              icon: 'none',
+              duration: 2000
+            });
+          });
+        }else{
+          wx.hideLoading();
+          //未签到
+          that.setData({
+            signed: false
+          });
+        }
+      }).catch(err => {
+        wx.hideLoading();
+        console.log(err);
+        //加载数据出错 提示
+        wx.showToast({
+          title: err,
+          icon: 'none',
+          duration: 2000
+        });
+      });
+    } else if (currentUser == null) {
+      //如果用户为空 重新登录
+      Bmob.User.auth().then(res => {
+        console.log("重新登录成功", res);
+      }).catch(err => {
+        wx.showToast({
+          title: '登录失败，请检查网络',
+        })
+      });
+    }else{
+      //如果用户未解锁
+      that.setData({
+        hasUserInfo: false
+      });
+    }
   },
 
   /**
@@ -166,39 +190,82 @@ Page({
   onShareAppMessage: function () {
   
   },
-  //关于
-  about: function (e) {
-    common.showModal('本程序后端使用Bmob简单实现，仅供学习使用，如想加入一起学习，请加QQ群：118541934');
-  },
   //获取用户信息以解锁
   getUserInfo: function (e) {
+    //用户拒绝授权
+    if (e.detail.errMsg && e.detail.errMsg == "getUserInfo:fail auth deny"){
+      wx.showToast({
+        title: '解锁失败，请允许授权',
+        icon: "none"
+      })
+      return false;
+    }
     //更新全局用户信息
+    wx.showLoading({
+      title: '解锁中',
+    })
     app.globalData.userInfo = e.detail.userInfo
     console.log(e.detail.userInfo);
     //更新Bmob用户信息
-    Bmob.User.upInfo(e.detail.userInfo);
-    var query = Bmob.Query('_User');
-    query.get(currentUser.objectId).then(res => {
-      console.log(res)
-      res.set('isLock', true);
-      res.save();
+    Bmob.User.upInfo(e.detail.userInfo).then(result => {
+      console.log(result)
+      //获取信息之后更新islock字段
+      var query = Bmob.Query('_User');
+      query.get(currentUser.objectId).then(res => {
+        console.log(res)
+        res.set('isLock', true);
+        res.save().then(res => {
+          console.log(res);
+          //刷新缓存
+          Bmob.User.updateStorage(currentUser.objectId).then(res => {
+            wx.hideLoading();
+            console.log(res);
+            //更新全局数据
+            this.setData({
+              userInfo: e.detail.userInfo,
+              hasUserInfo: true
+            })
+            wx.showToast({
+              title: '解锁成功',
+            })
+          }).catch(err => {
+            wx.hideLoading();
+            console.log(err);
+            wx.showToast({
+              title: '解锁失败，请重新点击解锁',
+              icon: "none"
+            })
+          });
+        }).catch(err => {
+          wx.hideLoading();
+          wx.showToast({
+            title: '解锁失败，请重新点击解锁',
+            icon: "none"
+          })
+          console.log(err);
+        });
+      }).catch(err => {
+        wx.hideLoading();
+        console.log(err);
+        wx.showToast({
+          title: '解锁失败，请重新点击解锁',
+          icon: "none"
+        })
+      })
     }).catch(err => {
-      console.log(err)
-    })
-    //刷新缓存
-    Bmob.User.updateStorage(currentUser.objectId).then(res => {
-      console.log(res);
-    }).catch(err => {
+      wx.hideLoading();
       console.log(err);
+      wx.showToast({
+        title: '解锁失败'+err,
+        icon: 'none'
+      })
     });
-    //更新全局数据
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
   },
   //签到
   signUp: function(e){
+    wx.showLoading({
+      title: '签到中',
+    })
     const query = Bmob.Query('sign_logs');
     query.set("userid", currentUser.objectId);
     query.save().then(res => {
@@ -207,7 +274,27 @@ Page({
         signed: true,
         signedTime: res.createdAt
       });
+      //获取签到记录数
+      var signDaysQuery = Bmob.Query('sign_logs');
+      signDaysQuery.equalTo("userid", "==", currentUser.objectId);
+      signDaysQuery.count().then(res => {
+        wx.hideLoading();//取消加载框
+        //更新签到天数
+        that.setData({
+          signdays: res
+        });
+      }).catch(err => {
+        wx.hideLoading();//取消加载框
+        console.log(err);
+        //加载数据出错 提示
+        wx.showToast({
+          title: err,
+          icon: 'none',
+          duration: 2000
+        });
+      });
     }).catch(err => {
+      wx.hideLoading();
       common.showModal('签到出错', err);
     })
   }

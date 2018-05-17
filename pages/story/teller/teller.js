@@ -1,6 +1,4 @@
-// pages/story/teller/teller.js
 var Bmob = require('../../../utils/Bmob-1.3.1.min.js');
-var common = require('../../../utils/common.js');//定义公共处理函数
 //获取应用实例
 var app = getApp();
 //定义当前缓存的对象

@@ -19,6 +19,7 @@
 }
 /*修改默认button的颜色*/
 button[type="primary"]{
+  width: calc(100% - 50rpx);
   background-color: #5fceca;
 }
 /*修改button点击后的颜色*/
@@ -65,4 +66,8 @@ button[type="primary"]{
   justify-content: center;
   margin-top: 29rpx;
   margin-bottom: 29rpx;
+}
+/*重写weui-cells weui-cells_after-title*/
+.weui-cells_after-title{
+  padding-left: 15rpx;
 }

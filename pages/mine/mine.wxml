@@ -3,16 +3,20 @@
         <view class="g-bd">
             <view></view>
             <view class="g-bda">
-                <view bindtap="" class="g-bda-userinfo-30">
+                <view class="g-bda-userinfo-30">
                     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
                 </view>
-                <view bindtap="" class="g-bda-userinfo-70" wx:if="{{!hasUserInfo}}">
+                <view class="g-bda-userinfo-70" wx:if="{{!hasUserInfo}}">
                   <text class='userinfo-name'>尚未解锁</text>
                   <text class='userinfo-sign'>请点击下方的按钮解锁</text>
                 </view>
-                <view bindtap="" class="g-bda-userinfo-70" wx:else>
+                <view class="g-bda-userinfo-70" wx:elif="{{signed}}">
                   <text class='userinfo-name'>{{userInfo.nickName}}</text>
                   <text class='userinfo-sign'>已签到{{signdays}}天</text>
+                </view>
+                <view class="g-bda-userinfo-70" wx:else>
+                  <text class='userinfo-name'>{{userInfo.nickName}}</text>
+                  <text class='userinfo-sign'>记得帮宝宝签到哦</text>
                 </view>
             </view>
         </view>
