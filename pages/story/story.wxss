@@ -1,4 +1,7 @@
 /* pages/story/story.wxss */
+.container{
+  /* background-color: #F8F8F8*/
+} 
 .big-photo-list{
     width:100%;
     display:flex;
@@ -8,16 +11,16 @@
 }
 
 .big-photo-item{
-    width:300rpx;
+    width:260rpx;
     display: flex;
     flex-direction: column;
-    padding:15rpx 15rpx;
+    padding:30rpx 30rpx;
     align-items:center;
 }
 
 .photo{
-    width:300rpx;
-    height:300rpx;
+    width:260rpx;
+    height:260rpx;
     border-radius: 10%;
     background: #aaaaaa;
 }

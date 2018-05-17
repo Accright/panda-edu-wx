@@ -1,7 +1,8 @@
+var globalContext = null;
 Page({
   data:{
-    pen : 3, //画笔粗细默认值
-    color : '#cc0033' //画笔颜色默认值
+    pen : 10, //画笔粗细默认值
+    color: '#FF3030' //画笔颜色默认值
   },
   startX: 0, //保存X坐标轴变量
   startY: 0, //保存X坐标轴变量
@@ -11,13 +12,14 @@ Page({
       //得到触摸点的坐标
       this.startX = e.changedTouches[0].x
       this.startY = e.changedTouches[0].y
-      this.context = wx.createContext()
+      this.context = wx.createContext();
+      globalContext = this.context;
 
       if(this.isClear){ //判断是否启用的橡皮擦功能  ture表示清除  false表示画画
          this.context.setStrokeStyle('#F8F8F8') //设置线条样式 此处设置为画布的背景颜色  橡皮擦原理就是：利用擦过的地方被填充为画布的背景颜色一致 从而达到橡皮擦的效果 
          this.context.setLineCap('round') //设置线条端点的样式
          this.context.setLineJoin('round') //设置两线相交处的样式
-         this.context.setLineWidth(20) //设置线条宽度
+         this.context.setLineWidth(60) //设置线条宽度
          this.context.save();  //保存当前坐标轴的缩放、旋转、平移信息
          this.context.beginPath() //开始一个路径 
          this.context.arc(this.startX,this.startY,5,0,2*Math.PI,true);  //添加一个弧形路径到当前路径，顺时针绘制  这里总共画了360度  也就是一个圆形 
@@ -85,5 +87,43 @@ Page({
     console.log(e.currentTarget);
     this.setData({color:e.currentTarget.dataset.param});
     this.isClear = false;
+  },
+  //保存画画的canvas
+  saveCanvas: function(e){
+    if (globalContext){
+        wx.canvasToTempFilePath({
+          canvasId: 'myCanvas',
+          fileType: 'jpg',
+          success: function (res) {
+            console.log(res.tempFilePath)
+            wx.saveImageToPhotosAlbum({
+              filePath: res.tempFilePath,
+              success: function(res){
+                wx.showToast({
+                  title: '保存完成',
+                  icon: 'success'
+                })
+              },
+              fail: function(){
+                wx.showToast({
+                  title: '保存失败,请检查授权',
+                  icon: 'none'
+                })
+              }
+            });
+          },
+          fail: function(err){
+            wx.showToast({
+              title: '保存失败',
+              icon: 'none'
+            })
+          }
+        })
+    }else{
+      wx.showToast({
+        title: '宝宝还没开始画哦',
+        icon: 'none'
+      })
+    }
   }
 })

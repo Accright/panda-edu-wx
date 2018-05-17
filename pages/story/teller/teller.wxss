@@ -1,16 +1,22 @@
 /* pages/story/teller/teller.wxss */
 .playing{
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .thumbnail image{
-	height: 300px;
-	width: 100%;
+	height: 460rpx;
+	width: 460rpx;
+  border-radius: 10%;
 }
 .title{
 	text-align: center;
 	font-size: 1.3rem;
 	margin-top: 20rpx;
 	margin-bottom: 20rpx;
+  color: #5F9EA0;
+  font-weight: bold; 
 }
 .author{
 	text-align: center;
@@ -28,4 +34,16 @@
 .action view{
 	display: inline-block;
 	margin: 0 15rpx;
+}
+/*简介*/
+.desc{
+  margin-top: 20rpx;
+  padding: 50rpx;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+.desc_text{
+  font-size: 30rpx;
+  color: #999;
 }

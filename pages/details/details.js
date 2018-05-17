@@ -18,6 +18,11 @@ Page({
    */
   onLoad: function (options) {
     that = this;//全局变量赋值
+    //根据type确定标题
+    var title = "学习认知"
+    // wx.setNavigationBarTitle({
+    //   title: '当前页面'
+    // })
     //加载框
     wx.showLoading({
       title: '资料加载中',

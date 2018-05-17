@@ -22,7 +22,7 @@ var tab2 = [
 //定义 首页 tab3
 var tab3 = [
   { "name": "听故事", "ico": "storybook.png", "url": "../story/story", "color": "#F06060" },
-  { "name": "学画画", "ico": "paint.png", "url": "../paint/paint", "color": "#FFFF5A" }
+  { "name": "学画画", "ico": "paint.png", "url": "../paint/paint", "color": "#76C2AF" }
 ];
 Page({
   data: {

@@ -101,8 +101,11 @@ Page({
     }
     //获取育儿经
     var expQuery = Bmob.Query('experience');
-    expQuery.equalTo("createdAt", ">", now);
-    expQuery.equalTo("createdAt", "<", next);
+    //获取当天的育儿经 --改为获取所有并以创建时间降序排列 取第一条
+    // expQuery.equalTo("createdAt", ">", now);
+    // expQuery.equalTo("createdAt", "<", next);
+    expQuery.limit(1);
+    expQuery.order("-createdAt");
     expQuery.find().then(res => {
       //console.log(res);
       //如果长度大于0 说明获取成功

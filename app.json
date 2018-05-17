@@ -10,7 +10,8 @@
     "pages/experience/experience",
     "pages/paint/paint",
     "pages/story/story",
-    "pages/story/teller/teller"
+    "pages/story/teller/teller",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,21 +21,21 @@
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#318efb",
-    "borderStyle": "#3891f8",
+    "selectedColor": "#AEEEEE",
+    "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
         "iconPath": "images/logo.png",
         "selectedIconPath": "images/logo.png",
-        "text": "常用接口"
+        "text": "学习认知"
       },
       {
         "pagePath": "pages/mine/mine",
         "iconPath": "images/logo.png",
         "selectedIconPath": "images/logo.png",
-        "text": "日记管理"
+        "text": "个人中心"
       }
     ]
   }

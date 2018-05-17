@@ -91,7 +91,7 @@
               <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_small-appmsg padding-none">
                   <view class='weui-cells'> 
-                    <navigator class='weui-cell weui-cell_access' url='../feedback/feedback'>
+                    <navigator class='weui-cell weui-cell_access' url='../about/about?type=guide'>
                       <view class='weui-cell__bd weui-cell_primary'>
                         <text>使用指南</text>
                       </view>
@@ -101,7 +101,7 @@
                         <text>反馈意见</text>
                       </view>
                     </navigator>
-                    <navigator class='weui-cell weui-cell_access' url=''>
+                    <navigator class='weui-cell weui-cell_access' url='../about/about?type=about'>
                       <view class='weui-cell__bd weui-cell_primary'>
                         <text>关于竹熊早教小程序</text>
                       </view>

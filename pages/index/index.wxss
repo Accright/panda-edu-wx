@@ -126,7 +126,9 @@ button:last-child{
   width: 45%;
   height: 350rpx;
   /* border: none; */
-  border: 2px #AEEEEE dashed;  
+  /* border: 5rpx #AEEEEE solid;   */
+  /* border: 5rpx #5F9EA0 dashed;  */
+  border: 5rpx #AEEEEE dashed;  
   border-radius: 10%; 
 }
 /*重写weui-grid__icon保证图片大小*/

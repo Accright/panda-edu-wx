@@ -4,9 +4,12 @@
 	</view>
 	<view class="detail">
 		<view class="title">{{item.title}}</view>
-		<view class="author">适合{{item.author}}个月宝宝</view>
+		<view class="author">适合{{item.match}}个月宝宝</view>
 		<view class="action">
 			<view class="act-toggle" bindtap="playToggle"><image src="/images/{{isPlaying ? 'pause' : 'play'}}.png" /></view>
 		</view>
 	</view>
+  <view class='desc'>
+    故事简介：<text class='desc_text'>{{item.desc}}</text>
+  </view>
 </view>
