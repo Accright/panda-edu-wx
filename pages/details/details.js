@@ -3,6 +3,7 @@ var Bmob = require('../../utils/Bmob-1.3.1.min.js');
 var common = require('../../utils/common.js');
 var app = getApp();
 var that;//定义全局变量
+const innerAudioContext = wx.createInnerAudioContext();
 // pages/detais/details.js
 Page({
 
@@ -99,7 +100,6 @@ Page({
   playVoice: function(event){
     //版本兼容处理
     if (wx.canIUse("createAudioContext")){
-      const innerAudioContext = wx.createInnerAudioContext();
       innerAudioContext.autoplay = true;
       console.log(event.currentTarget.dataset.voiceEn);
       innerAudioContext.src = event.currentTarget.dataset.voiceEn;

@@ -2,13 +2,13 @@
 <view class="container">
   <view class="page-body">
     <view class="page-section page-section-spacing swiper page__bd">
-      <swiper bindchange='changeTab'
+      <swiper
         indicator-dots="{{false}}">
         <!--tab-->
         <swiper-item wx:for-items="{{dataList}}" wx:key="{{id}}">
           <view class="weui-article">
             <view class='weui-article__section'>
-              <view class="weui-grid__label" style="color:{{item.color}};">{{item.label}}</view>
+              <view class="weui-grid__label" style="color:{{item.color}};font-size:{{item.fontSize}}">{{item.label}}</view>
               <view class='border-cicle' hover-class='weui-grid_active' data-voice-en='{{item.voiceEn}}'
                 data-voice-zh='{{item.voiceZh}}' bindtap='playVoice'>
                 <view class='weui-article__p wxParse-p'>
@@ -17,6 +17,9 @@
               </view>
               </view>
             </view>
+          </view>
+          <view class='know_desc'>
+            <text style='color:{{item.color}}'>{{item.desc}}</text>
           </view>
         </swiper-item>
       </swiper>

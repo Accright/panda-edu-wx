@@ -9,7 +9,7 @@ var user;
 var tab1 = [
   { "name": "认识字母", "ico": "alphabet.png", "icolock": "alphabetlock.png","url": "../details/details?type=letters", "color":"#77B3D4" },
   { "name": "认识数字", "ico": "numbers.png",  "icolock": "numberslock.png", "url": "../details/details?type=numbers", "color":"#FF7256" },
-  { "name": "认识动物", "ico": "logo.png",     "icolock": "logolock.png",  "url": "../details/details?type=logo", "color": "#8AC064" },
+  { "name": "认识动物", "ico": "logo.png",     "icolock": "logolock.png",  "url": "../details/details?type=animal", "color": "#8AC064" },
   { "name": "听故事", "ico": "storybook.png",  "icolock": "storybooklock.png", "url": "../story/story", "color": "#F06060" }
 ];
 //定义 首页 tab2
