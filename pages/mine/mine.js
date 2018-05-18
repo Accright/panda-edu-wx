@@ -26,7 +26,9 @@ Page({
     //今日推荐文章
     todayExp:{},
     //日期
-    today: util.getNowDay(new Date())
+    today: util.getNowDay(new Date()),
+    //是否开启声音后台播放 --默认为true
+    bg_check: true
   },
 
   /**
@@ -72,6 +74,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //更新音乐后台播放设置
+    if (wx.getStorageSync("bg_check")){
+      this.setData({
+        bg_check: wx.getStorageSync("bg_check")
+      });
+    }else{
+      wx.setStorageSync("bg_check", true);
+    }
     //定义当前缓存的对象
     currentUser = Bmob.User.current();
     console.log("curruser", currentUser);
@@ -296,6 +306,24 @@ Page({
     }).catch(err => {
       wx.hideLoading();
       common.showModal('签到出错', err);
+    })
+  },
+  //监听声音后台播放switch设置
+  bgCheckChange: function(e){
+    wx.setStorage({
+      key: 'bg_check',
+      data: e.detail.value,
+      success: function(res){
+        wx.showToast({
+          title: '更改成功'
+        })
+      },
+      fail: function(err){
+        wx.showToast({
+          title: '更改失败',
+          icon:"none"
+        })
+      }
     })
   }
 })

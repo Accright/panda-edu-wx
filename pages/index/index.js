@@ -41,8 +41,7 @@ Page({
     var that = this;
     user = Bmob.User.current();
     this.setData({
-      userInfo: user
-      
+      userInfo: user  
     });
   },
   changeTab: function(e){

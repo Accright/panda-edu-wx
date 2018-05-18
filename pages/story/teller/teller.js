@@ -6,6 +6,7 @@ let currentUser = Bmob.User.current();
 var that;
 //创建播放器对象
 var innerAudioContext = wx.createInnerAudioContext();
+var backgroundAudioManager = wx.getBackgroundAudioManager();//获取全局唯一后台音乐播放器
 Page({
 
   /**
@@ -34,21 +35,40 @@ Page({
       wx.setNavigationBarTitle({
         title: res.title
       })
-      //版本兼容 --高版本
-      if (wx.canIUse("createInnerAudioContext")){
-        innerAudioContext.src = res.voiceUrl;
-      }else{
-        //版本兼容 --低版本
-        wx.playVoice({
-          filePath: res.voiceUrl,
-          fail: function (res) {
+      //是否开启后台播放 --开启
+      if (wx.getStorageSync("bg_check")){
+        wx.playBackgroundAudio({
+          dataUrl: res.voiceUrl,
+          title: res.title,
+          coverImgUrl: res.imgUrl,
+          success: function(res){
+            console.log(res);
+          },
+          fail: function(err){
             wx.showToast({
-              title: "播放错误" + res.errCode + "\n" + res.errMsg,
+              title: "播放错误",
               icon: 'none',
               duration: 2000
             });
           }
         })
+      }else{
+        //版本兼容 --高版本
+        if (wx.canIUse("createInnerAudioContext")) {
+          innerAudioContext.src = res.voiceUrl;
+        } else {
+          //版本兼容 --低版本
+          wx.playVoice({
+            filePath: res.voiceUrl,
+            fail: function (res) {
+              wx.showToast({
+                title: "播放错误" + res.errCode + "\n" + res.errMsg,
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          })
+        }
       }
       that.setData({
         item: res
@@ -144,35 +164,53 @@ Page({
   
   },
   playToggle: function(e){
-    //版本兼容 --高版本
-    if (wx.canIUse("createInnerAudioContext")) {
-      //暂停和播放
-      if (innerAudioContext.paused) {
-        innerAudioContext.play();
+    //是否开启后台播放 --开启
+    if (wx.getStorageSync("bg_check")) {
+      if (backgroundAudioManager.paused){
+        // backgroundAudioManager.src = that.data.item.voiceUrl;
+        // backgroundAudioManager.title = that.data.item.title;
+        // backgroundAudioManager.coverImgUrl = that.data.item.imgUrl;
+        backgroundAudioManager.play();
         that.setData({
           isPlaying: true
         });
-      } else {
-        innerAudioContext.pause();
+      }else{
+        backgroundAudioManager.pause();
         that.setData({
           isPlaying: false
         });
       }
     }else{
-      //版本兼容 --低版本
-      wx.getBackgroundAudioPlayerState({
-        success: function (res) {
-          var status = res.status;//播放状态
-          var dataUrl = res.dataUrl;//播放链接
-          if (status == 1){
-            wx.pauseVoice();
-          }else{
-            wx.playVoice({
-              filePath: that.data.item.voiceUrl
-            });
-          }
+      //版本兼容 --高版本
+      if (wx.canIUse("createInnerAudioContext")) {
+        //暂停和播放
+        if (innerAudioContext.paused) {
+          innerAudioContext.play();
+          that.setData({
+            isPlaying: true
+          });
+        } else {
+          innerAudioContext.pause();
+          that.setData({
+            isPlaying: false
+          });
         }
-      })
+      } else {
+        //版本兼容 --低版本
+        wx.getBackgroundAudioPlayerState({
+          success: function (res) {
+            var status = res.status;//播放状态
+            var dataUrl = res.dataUrl;//播放链接
+            if (status == 1) {
+              wx.pauseVoice();
+            } else {
+              wx.playVoice({
+                filePath: that.data.item.voiceUrl
+              });
+            }
+          }
+        })
+      }
     }
   }
 })

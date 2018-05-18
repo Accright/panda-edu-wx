@@ -95,6 +95,14 @@
               <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_small-appmsg padding-none">
                   <view class='weui-cells'> 
+                    <view class='weui-cell weui-cell_access'>
+                      <view class='weui-cell__bd weui-cell_primary'>
+                        <text>声音后台播放</text>
+                      </view>
+                      <view class='weui-cell__ft'>
+                        <switch class='weui-switch' checked="{{bg_check}}" bindchange="bgCheckChange"></switch>
+                      </view>
+                    </view> 
                     <navigator class='weui-cell weui-cell_access' url='../about/about?type=guide'>
                       <view class='weui-cell__bd weui-cell_primary'>
                         <text>使用指南</text>
