@@ -146,8 +146,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function (res) {
+    return {
+      title: '竹熊早教，让您的孩子全面快乐成长',
+      path: '/pages/index/index',
+      imageUrl: '/images/shared.png'
+    }
   },
   //播放声音
   play: function(e){

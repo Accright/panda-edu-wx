@@ -91,7 +91,11 @@ Page({
   onReady: function () {
     //版本兼容 -- 低版本
     if (!wx.canIUse("createInnerAudioContext")) {
-      
+      wx.showToast({
+        title: '微信版本太低了，不支持故事播放',
+        icon: "none"
+      })
+      return false;
     }else{
       //开始播放  ---版本兼容 高版本
       if (!innerAudioContext.paused) {
@@ -101,6 +105,9 @@ Page({
       innerAudioContext.onPlay(() => {
         console.log('开始播放')
         wx.hideLoading();
+        that.setData({
+          isPlaying: true
+        });
       });
       innerAudioContext.onWaiting(() => {
         console.log('加载中')
@@ -108,10 +115,16 @@ Page({
           title: '加载中',
           mask: true
         })
+        that.setData({
+          isPlaying: false
+        });
       });
       innerAudioContext.onCanplay(() =>{
         console.log('继续播放')
         wx.hideLoading();
+        that.setData({
+          isPlaying: true
+        });
       });
       innerAudioContext.onEnded(() =>{
         console.log('已结束');
@@ -161,25 +174,37 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '我正在用竹熊早教给宝宝听故事，一起加入吧',
+      path: '/pages/index/index'
+    } 
   },
   playToggle: function(e){
     //是否开启后台播放 --开启
     if (wx.getStorageSync("bg_check")) {
-      if (backgroundAudioManager.paused){
-        // backgroundAudioManager.src = that.data.item.voiceUrl;
-        // backgroundAudioManager.title = that.data.item.title;
-        // backgroundAudioManager.coverImgUrl = that.data.item.imgUrl;
+      // //播放器正常
+      // if (backgroundAudioManager){
+      if (backgroundAudioManager.paused) {
         backgroundAudioManager.play();
         that.setData({
           isPlaying: true
         });
-      }else{
+      } else {
         backgroundAudioManager.pause();
         that.setData({
           isPlaying: false
         });
       }
+      // }
+      // else{//后台播放器关闭
+      //     backgroundAudioManager.src = that.data.item.voiceUrl;
+      //     backgroundAudioManager.title = that.data.item.title;
+      //     backgroundAudioManager.coverImgUrl = that.data.item.imgUrl;
+      //     backgroundAudioManager.play();
+      //     that.setData({
+      //       isPlaying: true
+      //     });
+      // }  
     }else{
       //版本兼容 --高版本
       if (wx.canIUse("createInnerAudioContext")) {

@@ -103,6 +103,11 @@
                         <switch class='weui-switch' checked="{{bg_check}}" bindchange="bgCheckChange"></switch>
                       </view>
                     </view> 
+                    <view class='weui-cell weui-cell_access'>
+                      <view class='weui-cell__bd weui-cell_primary'>
+                        <button class='weui-btn weui-btn_default share-btn' hover-class="share-hover" open-type='share'>分享给好友</button>
+                      </view>
+                    </view> 
                     <navigator class='weui-cell weui-cell_access' url='../about/about?type=guide'>
                       <view class='weui-cell__bd weui-cell_primary'>
                         <text>使用指南</text>

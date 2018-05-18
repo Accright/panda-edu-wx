@@ -59,5 +59,13 @@ Page({
       title: '请先进入“个人中心”页面解锁',
       icon: "none"
     })
+  },
+  //页面分享
+  onShareAppMessage: function (res) {
+    return {
+      title: '竹熊早教，让您的孩子全面快乐成长',
+      path: '/pages/index/index',
+      imageUrl: '/images/shared.png'
+    }
   }
 })

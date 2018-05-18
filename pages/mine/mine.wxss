@@ -246,3 +246,16 @@ button[type="primary"]{
   border-bottom: none;
   color: #D9D9D9;
 }
+/*使分享按钮和列表样式相同*/
+.share-btn{
+  text-align:left;
+  padding:0;
+  background: white;
+  line-height: 2;
+}
+.weui-btn:after {
+  border: none;
+}
+.share-hover{
+  
+}
