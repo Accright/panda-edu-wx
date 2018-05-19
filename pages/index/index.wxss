@@ -128,7 +128,7 @@ button:last-child{
   /* border: none; */
   /* border: 5rpx #AEEEEE solid;   */
   /* border: 5rpx #5F9EA0 dashed;  */
-  border: 5rpx #AEEEEE dashed;  
+  border: 5rpx #B0E0E6 dashed;  
   border-radius: 10%; 
 }
 /*重写weui-grid__icon保证图片大小*/

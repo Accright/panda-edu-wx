@@ -11,7 +11,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataList:[]
+    dataList:[],
+    current: 0,//当前所处的页面，用来快速跳页
+    sliderMax: 10,//slider的最大值
+    pageName: "对应页面"//页面标题
   },
 
   /**
@@ -36,7 +39,8 @@ Page({
       //取消loading
       wx.hideLoading();
       that.setData({
-        dataList:res
+        dataList:res,
+        sliderMax: res.length - 1
       });
     }).catch(err => {
       console.log(err);
@@ -128,5 +132,20 @@ Page({
         }
       })
     }
+  },
+  //拖动滑块跳页中
+  sliderChanging: function(e){
+    //拖动中的提示
+    that.setData({
+      pageName: that.data.dataList[e.detail.value].label
+    })
+  }
+  ,
+  //拖动滑块跳页完成
+  sliderChange: function (e) {
+    //拖动中的提示
+    that.setData({
+      current: e.detail.value
+    })
   }
 })

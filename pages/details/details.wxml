@@ -3,7 +3,7 @@
   <view class="page-body">
     <view class="page-section page-section-spacing swiper page__bd">
       <swiper
-        indicator-dots="{{false}}">
+        indicator-dots="{{false}}" current="{{current}}">
         <!--tab-->
         <swiper-item wx:for-items="{{dataList}}" wx:key="{{id}}">
           <view class="weui-article">
@@ -23,6 +23,10 @@
           </view>
         </swiper-item>
       </swiper>
+      <view class="slider-view">
+        拖动滑块快速翻页至<text class='slider-text'>{{pageName}}</text>
+      </view>
+      <slider class='slider' bindchange="" show-value="{{false}}" block-size="16" activeColor="#5F9EA0" block-color="#B0E0E6" max="{{sliderMax}}" bindchanging="sliderChanging" bindchange="sliderChange"/>
     </view>
   </view>
 </view>
