@@ -35,7 +35,7 @@ Page({
     query.order("order");
     query.equalTo("type", "==", options.type);//设置type为传递的值
     query.find().then(res => {
-      console.log(res);
+      //console.log(res);
       //取消loading
       wx.hideLoading();
       that.setData({

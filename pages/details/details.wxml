@@ -26,7 +26,7 @@
       <view class="slider-view">
         拖动滑块快速翻页至<text class='slider-text'>{{pageName}}</text>
       </view>
-      <slider class='slider' bindchange="" show-value="{{false}}" block-size="16" activeColor="#5F9EA0" block-color="#B0E0E6" max="{{sliderMax}}" bindchanging="sliderChanging" bindchange="sliderChange"/>
+      <slider class='slider' bindchange="" show-value="{{false}}" block-size="16" activeColor="#5F9EA0" block-color="#5F9EA0" max="{{sliderMax}}" bindchanging="sliderChanging" bindchange="sliderChange"/>
     </view>
   </view>
 </view>

@@ -218,14 +218,14 @@ swiper{
   justify-content: center;
   align-items: center;
   margin-top: 60rpx;
-  color: #B0E0E6;
+  color: #999999;
 }
 .slider-text{
   /*float: left;*/
-  margin-left: 50rpx;
+  margin-left: 10rpx; 
   color:#5F9EA0;
 }
 .slider{
-  padding-left: 60rpx;
-  padding-right: 60rpx;
+  padding-left: 90rpx;
+  padding-right: 90rpx;
 }
