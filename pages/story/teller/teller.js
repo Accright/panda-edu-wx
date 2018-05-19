@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("onLoad");
+    //console.log("onLoad");
     //远程加载数据
     that = this;
     wx.showLoading({
@@ -38,15 +38,25 @@ Page({
       })
       //是否开启后台播放 --开启
       if (wx.getStorageSync("bg_check")){
-        //innerAudioContext.destroy();
-        backgroundAudioManager.src = res.voiceUrl;
-        backgroundAudioManager.coverImgUrl = res.imgUrl;
-        backgroundAudioManager.title = res.title;
+        innerAudioContext.destroy();
+        //src 不同才赋值重新播放 否则继续播放
+        if (backgroundAudioManager && backgroundAudioManager.src != res.voiceUrl){
+          backgroundAudioManager.src = res.voiceUrl;
+          backgroundAudioManager.coverImgUrl = res.imgUrl;
+          backgroundAudioManager.title = res.title;
+        }
       }else{
         //版本兼容 --高版本
+        backgroundAudioManager.stop();
         if (wx.canIUse("createInnerAudioContext")) {
-          innerAudioContext.src = res.voiceUrl;
-          backgroundAudioManager.stop();
+          //src 不同才赋值重新播放 否则继续播放
+          if (innerAudioContext && innerAudioContext.src != res.voiceUrl) {
+            //console.log("重新赋值");
+            innerAudioContext.stop(); //先暂停上一个 避免重复播放
+            innerAudioContext.src = res.voiceUrl;
+            innerAudioContext.autoplay = true
+            innerAudioContext.play();
+          }
         } else {
           //版本兼容 --低版本
           wx.playVoice({
@@ -87,7 +97,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow");
+    //console.log("onShow");
     //是否开启后台播放 --开启
     if (wx.getStorageSync("bg_check")) {
       //backgroundAudioManager.play();
@@ -142,11 +152,10 @@ Page({
         })
         return false;
       } else {
-        //开始播放  ---版本兼容 高版本
-        if (!innerAudioContext.paused) {
-          innerAudioContext.stop();
+        if (innerAudioContext.paused){
+          innerAudioContext.play();
         }
-        innerAudioContext.autoplay = true
+        //开始播放  ---版本兼容 高版本
         innerAudioContext.onPlay(() => {
           console.log('开始播放')
           wx.hideLoading();
