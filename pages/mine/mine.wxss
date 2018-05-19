@@ -130,6 +130,7 @@
 }
 /*修改默认button的颜色*/
 button[type="primary"]{
+  font-size: 30rpx;
   background-color: #ff8247;
 }
 /*修改button点击后的颜色*/
