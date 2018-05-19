@@ -26,21 +26,34 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    skip = 0;//初始化分页
     that = this;
     //获取故事列表
+    wx.showLoading({
+      title: '获取故事列表中',
+    })
     var query = Bmob.Query('story');
     query.order("order");
     query.limit(10);
     query.find().then(res => {
+      wx.hideLoading();
       //console.log(res);
       //如果长度大于0 说明获取成功
       if (res.length > 0) {
-        skip += 10;
+        //skip += 10;
         that.setData({
           storyList: res
         });
       }
     }).catch(err => {
+      wx.hideLoading();
       console.log(err);
       //加载数据出错 提示
       wx.showToast({
@@ -49,13 +62,6 @@ Page({
         duration: 2000
       });
     });
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    skip = 0;//初始化分页
   },
 
   /**
@@ -85,7 +91,7 @@ Page({
       //console.log(res);
       //如果长度大于0 说明获取成功
       if (res.length > 0) {
-        skip += 10;
+        skip = 0;
         that.setData({
           storyList: res
         });
@@ -107,7 +113,8 @@ Page({
    */
   onReachBottom: function () {
     //上拉加载数据
-    //console.log(skip);
+    console.log(skip);
+    skip += 10;
     var query = Bmob.Query('story');
     query.skip(skip);
     query.order("order");
@@ -115,7 +122,7 @@ Page({
       //console.log(res);
       //如果长度大于0 说明获取成功
       if (res.length > 0) {
-        skip += 10;
+        //skip += 10;
         res = res.concat(that.data.storyList);
         //console.log(res);
         //需要对数组根据order进行排序 
