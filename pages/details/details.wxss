@@ -1,5 +1,6 @@
 /* pages/detais/details.wxss */
 @import "../../styles/weui.wxss";
+/* @import "../../styles/animation.wxss"; */
 page {
   background-color: white;
   height: 100%;
@@ -151,6 +152,7 @@ swiper{
 }
 /*重写weui-grid_active实现点击放大效果*/
 .weui-grid_active{
+  background-color: #B0E0E6;
   transform:scale(1.1);
   -ms-transform:scale(1.1);
   -webkit-transform:scale(1.1);
@@ -160,7 +162,7 @@ swiper{
 /*详情圆形展示*/
 .weui-article__p {
   margin: 0;
-  background-color: #AEEEEE;
+  /* background-color: #AEEEEE; */
   width: 550rpx;
   height: 550rpx;
   border-radius: 50%;
@@ -191,7 +193,7 @@ swiper{
   align-items: center;
   width: 600rpx;
   height: 600rpx;
-  border: 3rpx #B0E0E6 dashed;
+  border: 10rpx #B0E0E6 dashed;
   border-radius: 50%;
 }
 /*重写wxParse-p是内容居中*/

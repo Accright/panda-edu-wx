@@ -1,5 +1,19 @@
 <!--details.wxml-->
 <view class="container">
+  <!--动画效果 未启用 <view class="stars">
+      <view class="star"></view>
+      <view class="star"></view>
+      <view class="star"></view>
+      <view class="star pink"></view>
+      <view class="star pink1"></view>
+      <view class="star pink2"></view>
+      <view class="star blue"></view>
+      <view class="star blue1"></view>
+      <view class="star blue2"></view>
+      <view class="star yellow"></view>
+      <view class="star yellow1"></view>
+      <view class="star yellow2"></view>
+  </view> -->
   <view class="page-body">
     <view class="page-section page-section-spacing swiper page__bd">
       <swiper
@@ -29,4 +43,5 @@
       <slider class='slider' bindchange="" show-value="{{false}}" block-size="16" activeColor="#5F9EA0" block-color="#5F9EA0" max="{{sliderMax}}" bindchanging="sliderChanging" bindchange="sliderChange"/>
     </view>
   </view>
+  <heartanim></heartanim>
 </view>
