@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("onLoad");
     //远程加载数据
     that = this;
     wx.showLoading({
@@ -38,21 +39,9 @@ Page({
       //是否开启后台播放 --开启
       if (wx.getStorageSync("bg_check")){
         //innerAudioContext.destroy();
-        wx.playBackgroundAudio({
-          dataUrl: res.voiceUrl,
-          title: res.title,
-          coverImgUrl: res.imgUrl,
-          success: function(res){
-            console.log(res);
-          },
-          fail: function(err){
-            wx.showToast({
-              title: "播放错误",
-              icon: 'none',
-              duration: 2000
-            });
-          }
-        })
+        backgroundAudioManager.src = res.voiceUrl;
+        backgroundAudioManager.coverImgUrl = res.imgUrl;
+        backgroundAudioManager.title = res.title;
       }else{
         //版本兼容 --高版本
         if (wx.canIUse("createInnerAudioContext")) {
@@ -98,24 +87,52 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("onShow");
     //是否开启后台播放 --开启
     if (wx.getStorageSync("bg_check")) {
-      //innerAudioContext.destroy();
-      wx.playBackgroundAudio({
-        dataUrl: that.data.item.voiceUrl,
-        title: that.data.item.title,
-        coverImgUrl: that.data.item.imgUrl,
-        success: function (res) {
-          console.log(res);
-        },
-        fail: function (err) {
-          wx.showToast({
-            title: "播放错误",
-            icon: 'none',
-            duration: 2000
-          });
-        }
-      })
+      //backgroundAudioManager.play();
+      backgroundAudioManager.onPlay(() => {
+        console.log('开始播放')
+        wx.hideLoading();
+        that.setData({
+          isPlaying: true
+        });
+      });
+      backgroundAudioManager.onWaiting(() => {
+        console.log('加载中')
+        wx.showLoading({
+          title: '加载中',
+          mask: true
+        })
+        that.setData({
+          isPlaying: false
+        });
+      });
+      backgroundAudioManager.onCanplay(() => {
+        console.log('继续播放')
+        wx.hideLoading();
+        that.setData({
+          isPlaying: true
+        });
+      });
+      backgroundAudioManager.onEnded(() => {
+        console.log('已结束');
+        that.setData({
+          isPlaying: false
+        });
+      });
+      backgroundAudioManager.onPause(() => {
+        console.log('已暂停');
+        that.setData({
+          isPlaying: false
+        });
+      });
+      backgroundAudioManager.onError(() => {
+        console.log('播放出错');
+        that.setData({
+          isPlaying: false
+        });
+      });
     }else{
       //版本兼容 -- 低版本
       if (!wx.canIUse("createInnerAudioContext")) {
@@ -156,6 +173,18 @@ Page({
         });
         innerAudioContext.onEnded(() => {
           console.log('已结束');
+          that.setData({
+            isPlaying: false
+          });
+        });
+        innerAudioContext.onPause(() => {
+          console.log('已暂停');
+          that.setData({
+            isPlaying: false
+          });
+        });
+        innerAudioContext.onError(() => {
+          console.log('播放出错');
           that.setData({
             isPlaying: false
           });
