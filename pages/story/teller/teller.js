@@ -38,7 +38,8 @@ Page({
       })
       //是否开启后台播放 --开启
       if (wx.getStorageSync("bg_check")){
-        innerAudioContext.destroy();
+        //暂停非后台播放的音乐
+        innerAudioContext.stop();
         //src 不同才赋值重新播放 否则继续播放
         if (backgroundAudioManager && backgroundAudioManager.src != res.voiceUrl){
           backgroundAudioManager.src = res.voiceUrl;
@@ -51,7 +52,7 @@ Page({
         if (wx.canIUse("createInnerAudioContext")) {
           //src 不同才赋值重新播放 否则继续播放
           if (innerAudioContext && innerAudioContext.src != res.voiceUrl) {
-            //console.log("重新赋值");
+            console.log("重新赋值");
             innerAudioContext.stop(); //先暂停上一个 避免重复播放
             innerAudioContext.src = res.voiceUrl;
             innerAudioContext.autoplay = true
@@ -84,20 +85,8 @@ Page({
         duration: 2000
       });
     });
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    //console.log("onShow");
+    //添加回调
     //是否开启后台播放 --开启
     if (wx.getStorageSync("bg_check")) {
       //backgroundAudioManager.play();
@@ -143,61 +132,68 @@ Page({
           isPlaying: false
         });
       });
-    }else{
-      //版本兼容 -- 低版本
-      if (!wx.canIUse("createInnerAudioContext")) {
-        wx.showToast({
-          title: '微信版本太低了，不支持故事播放',
-          icon: "none"
+    } else {
+      //开始播放  ---版本兼容 高版本
+      innerAudioContext.onPlay(() => {
+        console.log('开始播放')
+        wx.hideLoading();
+        that.setData({
+          isPlaying: true
+        });
+      });
+      innerAudioContext.onWaiting(() => {
+        console.log('加载中')
+        wx.showLoading({
+          title: '加载中',
+          mask: true
         })
-        return false;
-      } else {
-        if (innerAudioContext.paused){
-          innerAudioContext.play();
-        }
-        //开始播放  ---版本兼容 高版本
-        innerAudioContext.onPlay(() => {
-          console.log('开始播放')
-          wx.hideLoading();
-          that.setData({
-            isPlaying: true
-          });
+        that.setData({
+          isPlaying: false
         });
-        innerAudioContext.onWaiting(() => {
-          console.log('加载中')
-          wx.showLoading({
-            title: '加载中',
-            mask: true
-          })
-          that.setData({
-            isPlaying: false
-          });
+      });
+      innerAudioContext.onCanplay(() => {
+        console.log('继续播放')
+        wx.hideLoading();
+        that.setData({
+          isPlaying: true
         });
-        innerAudioContext.onCanplay(() => {
-          console.log('继续播放')
-          wx.hideLoading();
-          that.setData({
-            isPlaying: true
-          });
+      });
+      innerAudioContext.onEnded(() => {
+        console.log('已结束');
+        that.setData({
+          isPlaying: false
         });
-        innerAudioContext.onEnded(() => {
-          console.log('已结束');
-          that.setData({
-            isPlaying: false
-          });
+      });
+      innerAudioContext.onPause(() => {
+        console.log('已暂停');
+        that.setData({
+          isPlaying: false
         });
-        innerAudioContext.onPause(() => {
-          console.log('已暂停');
-          that.setData({
-            isPlaying: false
-          });
+      });
+      innerAudioContext.onError(() => {
+        console.log('播放出错');
+        that.setData({
+          isPlaying: false
         });
-        innerAudioContext.onError(() => {
-          console.log('播放出错');
-          that.setData({
-            isPlaying: false
-          });
-        });
+      });
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    //console.log("onShow");
+    if (!wx.getStorageSync("bg_check")) {
+      if (innerAudioContext.paused) {
+        innerAudioContext.play();
       }
     }
   },
