@@ -139,6 +139,7 @@ button[type="primary"]{
 }
 /*圆形按钮-签到*/
 .circle-btn-sign{
+  color: white!important;
   font-size: 30rpx;
   width: 130rpx;
   height: 130rpx;
