@@ -132,17 +132,18 @@ button:last-child{
 }
 /*重写weui-grid__icon保证图片大小*/
 .weui-grid__icon{
-  padding-top: 55rpx;
-  height: 400rpx;
-  width: 400rpx;
+  padding-top: 50rpx; 
+  height: 420rpx;
+  width: 420rpx;
 }
 /*重写weui-grid__label保证字体合适*/
 .weui-grid__label{
   font-family: 'DroidSans121401955e1cd96';
   margin-top:30rpx;
-  font-size:150rpx;
+  font-size:75rpx;
   color: #FFD700;
   font-weight: bold;
+  height: 200rpx;
 }
 /*重写swiper保证首页占满屏幕*/
 swiper{

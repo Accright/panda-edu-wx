@@ -75,7 +75,7 @@ Page({
    */
   onShow: function () {
     //更新音乐后台播放设置
-    if (wx.getStorageSync("bg_check")){
+    if (wx.getStorageSync("bg_check") != null && wx.getStorageSync("bg_check") != undefined){
       this.setData({
         bg_check: wx.getStorageSync("bg_check")
       });

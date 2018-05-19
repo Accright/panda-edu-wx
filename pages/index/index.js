@@ -56,7 +56,7 @@ Page({
   showTip: function(e){
     //common.showModal("请先进入“个人中心”页面解锁", "提示");
     wx.showToast({
-      title: '请先进入“个人中心”页面解锁',
+      title: '请先进入“个人中心”页面帮宝宝解锁',
       icon: "none"
     })
   },

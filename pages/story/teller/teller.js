@@ -37,6 +37,7 @@ Page({
       })
       //是否开启后台播放 --开启
       if (wx.getStorageSync("bg_check")){
+        //innerAudioContext.destroy();
         wx.playBackgroundAudio({
           dataUrl: res.voiceUrl,
           title: res.title,
@@ -56,6 +57,7 @@ Page({
         //版本兼容 --高版本
         if (wx.canIUse("createInnerAudioContext")) {
           innerAudioContext.src = res.voiceUrl;
+          backgroundAudioManager.stop();
         } else {
           //版本兼容 --低版本
           wx.playVoice({
@@ -89,57 +91,77 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    //版本兼容 -- 低版本
-    if (!wx.canIUse("createInnerAudioContext")) {
-      wx.showToast({
-        title: '微信版本太低了，不支持故事播放',
-        icon: "none"
-      })
-      return false;
-    }else{
-      //开始播放  ---版本兼容 高版本
-      if (!innerAudioContext.paused) {
-        innerAudioContext.stop();
-      }
-      innerAudioContext.autoplay = true
-      innerAudioContext.onPlay(() => {
-        console.log('开始播放')
-        wx.hideLoading();
-        that.setData({
-          isPlaying: true
-        });
-      });
-      innerAudioContext.onWaiting(() => {
-        console.log('加载中')
-        wx.showLoading({
-          title: '加载中',
-          mask: true
-        })
-        that.setData({
-          isPlaying: false
-        });
-      });
-      innerAudioContext.onCanplay(() =>{
-        console.log('继续播放')
-        wx.hideLoading();
-        that.setData({
-          isPlaying: true
-        });
-      });
-      innerAudioContext.onEnded(() =>{
-        console.log('已结束');
-        that.setData({
-          isPlaying: false
-        });
-      });
-    }
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    //是否开启后台播放 --开启
+    if (wx.getStorageSync("bg_check")) {
+      //innerAudioContext.destroy();
+      wx.playBackgroundAudio({
+        dataUrl: that.data.item.voiceUrl,
+        title: that.data.item.title,
+        coverImgUrl: that.data.item.imgUrl,
+        success: function (res) {
+          console.log(res);
+        },
+        fail: function (err) {
+          wx.showToast({
+            title: "播放错误",
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      })
+    }else{
+      //版本兼容 -- 低版本
+      if (!wx.canIUse("createInnerAudioContext")) {
+        wx.showToast({
+          title: '微信版本太低了，不支持故事播放',
+          icon: "none"
+        })
+        return false;
+      } else {
+        //开始播放  ---版本兼容 高版本
+        if (!innerAudioContext.paused) {
+          innerAudioContext.stop();
+        }
+        innerAudioContext.autoplay = true
+        innerAudioContext.onPlay(() => {
+          console.log('开始播放')
+          wx.hideLoading();
+          that.setData({
+            isPlaying: true
+          });
+        });
+        innerAudioContext.onWaiting(() => {
+          console.log('加载中')
+          wx.showLoading({
+            title: '加载中',
+            mask: true
+          })
+          that.setData({
+            isPlaying: false
+          });
+        });
+        innerAudioContext.onCanplay(() => {
+          console.log('继续播放')
+          wx.hideLoading();
+          that.setData({
+            isPlaying: true
+          });
+        });
+        innerAudioContext.onEnded(() => {
+          console.log('已结束');
+          that.setData({
+            isPlaying: false
+          });
+        });
+      }
+    }
   },
 
   /**
