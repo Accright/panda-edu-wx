@@ -167,6 +167,54 @@ swiper{
   height: 550rpx;
   border-radius: 50%;
 }
+/*光环效果 holo*/
+.holo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.holo:after{
+  content: '';
+  display: block;
+  position: absolute;
+  width: 650rpx;
+  height: 650rpx;
+  left: -325rpx;
+  top: -260rpx;
+  border-radius: 50%;
+  animation-name: Grow; 
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.holo:before {
+  box-shadow: 0px 0px 100px 6px #AEEEEE;
+}
+.holo:after {
+  box-shadow: inset 0px 0px 100px 6px #AEEEEE;
+}
+@keyframes Grow {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
 /*自定义一个椭圆*/
 .ellipse-v{
   margin-top: 30rpx;

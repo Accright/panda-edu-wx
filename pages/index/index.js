@@ -7,7 +7,7 @@ const app = getApp();
 var user;
 //定义 首页 tab1
 var tab1 = [
-  { "name": "认识字母", "ico": "alphabet.png", "icolock": "alphabetlock.png","url": "../details/details?type=letters", "color":"#77B3D4" },
+  { "name": "认识字母", "ico": "letters.png", "icolock": "letterslock.png","url": "../details/details?type=letters", "color":"#77B3D4" },
   { "name": "认识数字", "ico": "numbers.png",  "icolock": "numberslock.png", "url": "../details/details?type=numbers", "color":"#FF7256" },
   { "name": "认识动物", "ico": "logo.png",     "icolock": "logolock.png",  "url": "../details/details?type=animal", "color": "#8AC064" },
   { "name": "听故事", "ico": "storybook.png",  "icolock": "storybooklock.png", "url": "../story/story", "color": "#F06060" }
@@ -16,7 +16,7 @@ var tab1 = [
 var tab2 = [
   { "name": "认识水果", "ico": "fruit.png",    "icolock": "fruitlock.png","url": "../details/details?type=fruit", "color": "#A8F0C7" },
   { "name": "认识人物", "ico": "people.png",   "icolock": "peoplelock.png", "url": "../details/details?type=people", "color": "#FFC0CB" },
-  { "name": "认识颜色", "ico": "colors.png",   "icolock": "colorslock.png", "url": "../details/details?type=colors", "color": "#E0E0D1" },
+  { "name": "认识颜色", "ico": "colors.png", "icolock": "colorslock.png", "url": "../details/details?type=colors", "color": "#aaa4a5" },
   { "name": "学画画", "ico": "paint.png",      "icolock": "paintlock.png", "url": "../paint/paint", "color": "#76C2AF" }
 ];
 //定义 首页 tab3
