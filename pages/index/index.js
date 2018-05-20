@@ -22,6 +22,7 @@ var tab2 = [
 //定义 首页 tab3
 var tab3 = [
   { "name": "认识乐器", "ico": "instrument.png", "icolock": "instrumentlock.png", "url": "../details/details?type=instrument", "color": "#F9A72F" },
+  { "name": "学钢琴", "ico": "piano-tab.png", "icolock": "piano-tablock.png", "url": "../piano/piano", "color": "#ffc0cb" },
   { "name": "认识车辆", "ico": "cars.png", "icolock": "carslock.png", "url": "../details/details?type=cars", "color": "#32BEA6" }
 ];
 Page({

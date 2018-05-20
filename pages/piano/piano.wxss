@@ -1,0 +1,44 @@
+.container{
+  display: flex;
+}
+.piano-view{
+  width: 60%;
+  padding-top:60rpx; 
+  padding-left: 90rpx;
+  display: flex;
+  flex-direction: column;
+}
+.key{
+  width:100%;
+  height:130rpx;
+  float:left;
+}
+.btn-img{
+  width:100%;
+  height:130rpx;
+}
+/*按键按下特效*/
+.keydown{
+  transform:scale(1.2);
+}
+/**/
+.aon{
+font-family: 'DroidSans121c3335501cd96';
+font-size: 60rpx;
+transform: rotate(90deg);
+position: absolute;
+white-space:nowrap;/* 防止向下换行*/
+animation-timing-function: linear;
+animation-fill-mode: none;
+}
+.doommview{
+  z-index: 3;
+  height: 80%;
+  width: 100%;
+  position: absolute;
+}
+
+@keyframes first{
+  from{top: 100%; }
+  to{top: -100%;}
+}

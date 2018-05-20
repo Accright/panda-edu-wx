@@ -11,7 +11,8 @@
     "pages/paint/paint",
     "pages/story/story",
     "pages/story/teller/teller",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/piano/piano"
   ],
   "window": {
     "backgroundTextStyle": "light",
