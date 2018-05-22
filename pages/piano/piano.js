@@ -13,8 +13,13 @@ Page({
   keyDown: function (e) {
     var src = e.currentTarget.dataset.src;
     console.log(src);
-    innerAudioContext.src = src;
-    innerAudioContext.autoplay = true;
+    if (src == innerAudioContext.src){
+      innerAudioContext.stop();
+      innerAudioContext.play();
+    }else{
+      innerAudioContext.src = src;
+      innerAudioContext.autoplay = true;
+    }
     innerAudioContext.onError(() =>{
       wx.showToast({
         title: '播放出错啦',

@@ -34,7 +34,7 @@ animation-fill-mode: none;
 .doommview{
   z-index: 3;
   height: 80%;
-  width: 100%;
+  width: 60rpdx;
   position: absolute;
 }
 
